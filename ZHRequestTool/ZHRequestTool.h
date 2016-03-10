@@ -31,6 +31,8 @@ typedef NS_ENUM(NSUInteger, ZHHTTPMethod) {
 
 + (NSURLSessionDataTask *)GET:(NSString *)urlStr requestResult:(ZHRequestToolResult)result;
 
++ (NSURLSessionDataTask *)GET:(NSString *)urlStr parameters:(NSDictionary *)parameters requestResult:(ZHRequestToolResult)result;
+
 + (NSURLSessionDataTask *)GET:(NSString *)urlStr responseSerializer:(ZHResponseSeriliser)responseSerializer requestResult:(ZHRequestToolResult)result;
 
 + (NSURLSessionDataTask *)GET:(NSString *)urlStr requestSerializer:(ZHRequestSeriliser)requestSerializer responseSerializer:(ZHResponseSeriliser)responseSerializer requestResult:(ZHRequestToolResult)result;

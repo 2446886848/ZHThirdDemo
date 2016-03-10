@@ -16,12 +16,17 @@
 
 + (NSURLSessionDataTask *)GET:(NSString *)urlStr requestResult:(ZHRequestToolResult)result;
 {
-    return [self GET:urlStr responseSerializer:ZHResponseSeriliserHTTP requestResult:result];
+    return [self GET:urlStr parameters:nil requestSerializer:ZHRequestSeriliserHTTP responseSerializer:ZHResponseSeriliserHTTP progress:nil requestResult:result];
+}
+
++ (NSURLSessionDataTask *)GET:(NSString *)urlStr parameters:(NSDictionary *)parameters requestResult:(ZHRequestToolResult)result
+{
+    return [self GET:urlStr parameters:parameters requestSerializer:ZHRequestSeriliserHTTP responseSerializer:ZHResponseSeriliserHTTP progress:nil requestResult:result];
 }
 
 + (NSURLSessionDataTask *)GET:(NSString *)urlStr responseSerializer:(ZHResponseSeriliser)responseSerializer requestResult:(ZHRequestToolResult)result
 {
-    return [self GET:urlStr requestSerializer:ZHRequestSeriliserHTTP responseSerializer:responseSerializer requestResult:result];
+    return [self GET:urlStr parameters:nil requestSerializer:ZHRequestSeriliserHTTP responseSerializer:responseSerializer progress:nil requestResult:result];
 }
 
 + (NSURLSessionDataTask *)GET:(NSString *)urlStr requestSerializer:(ZHRequestSeriliser)requestSerializer responseSerializer:(ZHResponseSeriliser)responseSerializer requestResult:(ZHRequestToolResult)result
@@ -31,7 +36,7 @@
 
 + (NSURLSessionDataTask *)GET:(NSString *)urlStr parameters:(id)parameters responseSerializer:(ZHResponseSeriliser)responseSerializer requestResult:(ZHRequestToolResult)result
 {
-    return [self GET:urlStr parameters:parameters requestSerializer:ZHRequestSeriliserHTTP responseSerializer:responseSerializer requestResult:result];
+    return [self GET:urlStr parameters:parameters requestSerializer:ZHRequestSeriliserHTTP responseSerializer:responseSerializer progress:nil requestResult:result];
 }
 
 + (NSURLSessionDataTask *)GET:(NSString *)urlStr parameters:(id)parameters requestSerializer:(ZHRequestSeriliser)requestSerializer responseSerializer:(ZHResponseSeriliser)responseSerializer requestResult:(ZHRequestToolResult)result
@@ -48,7 +53,7 @@
 
 + (NSURLSessionDataTask *)POST:(NSString *)urlStr parameters:(id)parameters requestResult:(ZHRequestToolResult)result
 {
-    return [self POST:urlStr parameters:parameters responseSerializer:ZHResponseSeriliserHTTP requestResult:result];
+    return [self POST:urlStr parameters:parameters requestSerializer:ZHRequestSeriliserHTTP responseSerializer:ZHResponseSeriliserHTTP progress:nil requestResult:result];
 }
 
 + (NSURLSessionDataTask *)POST:(NSString *)urlStr parameters:(id)parameters responseSerializer:(ZHResponseSeriliser)responseSerializer requestResult:(ZHRequestToolResult)result
@@ -107,7 +112,7 @@
             
         case ZHHTTPMethodPOST:
         {
-            task = [manager GET:urlStr parameters:parameters progress:progress success:^(NSURLSessionDataTask * task, id responseObject) {
+            task = [manager POST:urlStr parameters:parameters progress:progress success:^(NSURLSessionDataTask * task, id responseObject) {
                 result(task, responseObject, nil);
             } failure:^(NSURLSessionDataTask * task, NSError * error) {
                 result(task, nil, error);
