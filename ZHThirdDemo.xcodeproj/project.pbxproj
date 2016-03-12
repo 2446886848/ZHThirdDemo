@@ -16,6 +16,7 @@
 		FC59A1FE1C422DC100FE4CF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC59A1FC1C422DC100FE4CF8 /* LaunchScreen.storyboard */; };
 		FC59A20C1C422EEA00FE4CF8 /* ZHRequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59A20A1C422EEA00FE4CF8 /* ZHRequestTool.m */; };
 		FC59A2131C4234EA00FE4CF8 /* ZHParam.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59A2121C4234EA00FE4CF8 /* ZHParam.m */; };
+		FCF86A7D1C9457620076A8EC /* ZHModelFormater.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF86A7C1C9457620076A8EC /* ZHModelFormater.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		FC59A20A1C422EEA00FE4CF8 /* ZHRequestTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHRequestTool.m; sourceTree = "<group>"; };
 		FC59A2111C4234EA00FE4CF8 /* ZHParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHParam.h; sourceTree = "<group>"; };
 		FC59A2121C4234EA00FE4CF8 /* ZHParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHParam.m; sourceTree = "<group>"; };
+		FCF86A7B1C9457620076A8EC /* ZHModelFormater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHModelFormater.h; sourceTree = "<group>"; };
+		FCF86A7C1C9457620076A8EC /* ZHModelFormater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHModelFormater.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,7 @@
 		FC59A2051C422ED100FE4CF8 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				FCF86A7A1C9457620076A8EC /* ZHModelFormatter */,
 				FC59A2061C422EEA00FE4CF8 /* ZHRequestTool */,
 			);
 			name = Class;
@@ -135,6 +139,15 @@
 				FC59A2121C4234EA00FE4CF8 /* ZHParam.m */,
 			);
 			name = TempClass;
+			sourceTree = "<group>";
+		};
+		FCF86A7A1C9457620076A8EC /* ZHModelFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				FCF86A7B1C9457620076A8EC /* ZHModelFormater.h */,
+				FCF86A7C1C9457620076A8EC /* ZHModelFormater.m */,
+			);
+			path = ZHModelFormatter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +276,7 @@
 				FC59A2131C4234EA00FE4CF8 /* ZHParam.m in Sources */,
 				FC59A1F31C422DC100FE4CF8 /* AppDelegate.m in Sources */,
 				FC59A1F01C422DC100FE4CF8 /* main.m in Sources */,
+				FCF86A7D1C9457620076A8EC /* ZHModelFormater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
