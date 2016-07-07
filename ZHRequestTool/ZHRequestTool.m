@@ -102,9 +102,12 @@
     switch (method) {
         case ZHHTTPMethodGET:
         {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             task = [manager GET:urlStr parameters:parameters progress:progress success:^(NSURLSessionDataTask * task, id responseObject) {
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 result(task, responseObject, nil);
             } failure:^(NSURLSessionDataTask * task, NSError * error) {
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 result(task, nil, error);
             }];
         }
@@ -112,9 +115,12 @@
             
         case ZHHTTPMethodPOST:
         {
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             task = [manager POST:urlStr parameters:parameters progress:progress success:^(NSURLSessionDataTask * task, id responseObject) {
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 result(task, responseObject, nil);
             } failure:^(NSURLSessionDataTask * task, NSError * error) {
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 result(task, nil, error);
             }];
         }
