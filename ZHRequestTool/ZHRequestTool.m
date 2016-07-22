@@ -106,9 +106,11 @@
             task = [manager GET:urlStr parameters:parameters progress:progress success:^(NSURLSessionDataTask * task, id responseObject) {
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 result(task, responseObject, nil);
+                [manager invalidateSessionCancelingTasks:YES];
             } failure:^(NSURLSessionDataTask * task, NSError * error) {
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 result(task, nil, error);
+                [manager invalidateSessionCancelingTasks:YES];
             }];
         }
         break;
@@ -119,9 +121,11 @@
             task = [manager POST:urlStr parameters:parameters progress:progress success:^(NSURLSessionDataTask * task, id responseObject) {
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 result(task, responseObject, nil);
+                [manager invalidateSessionCancelingTasks:YES];
             } failure:^(NSURLSessionDataTask * task, NSError * error) {
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 result(task, nil, error);
+                [manager invalidateSessionCancelingTasks:YES];
             }];
         }
         break;
