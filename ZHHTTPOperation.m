@@ -8,6 +8,7 @@
 
 #import "ZHHTTPOperation.h"
 #import "ZHRequestManager.h"
+#import <objc/runtime.h>
 
 @implementation ZHHTTPOperation
 
@@ -20,6 +21,16 @@
         _httpTimeoutInterval = @(60);
     }
     return self;
+}
+
++ (id<ZHHTTPRequestProtocol>)defaultHttpRequestDelegate
+{
+    return objc_getAssociatedObject(self, @selector(defaultHttpRequestDelegate));
+}
+
++ (void)setDefaultHttpRequestDelegate:(id<ZHHTTPRequestProtocol>)defaultHttpRequestDelegate
+{
+    objc_setAssociatedObject(self, @selector(defaultHttpRequestDelegate), defaultHttpRequestDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - chaining block
@@ -71,6 +82,13 @@
     return ^ZHHTTPOperation *(void (^progress)(NSProgress *progress)){
         self.httpProgress = progress;
         return self;
+    };
+}
+
++ (void(^)(id<ZHHTTPRequestProtocol>))defaultRequestDelegate
+{
+    return ^void(id<ZHHTTPRequestProtocol> defaultRequestDelegate){
+        self.defaultHttpRequestDelegate = defaultRequestDelegate;
     };
 }
 
@@ -194,6 +212,14 @@
 {
     self.httpRequestDelegate = requestDelegate;
     return self;
+}
+
+/**
+ *  设置请求发送前后的通知对象（建议用来显示加载动画等操作）
+ */
++ (void)defaultRequestDelegate:(id<ZHHTTPRequestProtocol>)defaultRequestDelegate
+{
+    self.defaultHttpRequestDelegate = defaultRequestDelegate;
 }
 
 @end

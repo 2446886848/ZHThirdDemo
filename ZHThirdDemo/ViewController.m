@@ -56,7 +56,7 @@
 {
     NSLog(@"rquestWillPerform:operation.url = %@", operation.httpUrl);
 }
-- (void)rquestDidFinished:(ZHHTTPOperation *)operation
+- (void)rquestDidFinished:(ZHHTTPOperation *)operation request:(ZHHTTPRequest *)request
 {
     NSLog(@"rquestDidFinished:operation.url = %@", operation.httpUrl);
 }

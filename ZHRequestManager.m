@@ -8,6 +8,7 @@
 
 #import "ZHRequestManager.h"
 #import <AFNetworking.h>
+#import "ZHHTTPRequest.h"
 
 @implementation ZHRequestManager
 
@@ -85,6 +86,16 @@ static inline AFHTTPSessionManager *afManager()
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         }
         
+        void(^requestDelegateCallBack)(ZHHTTPRequest *) = ^(ZHHTTPRequest *request){
+            if ([request.operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:request:)]) {
+                [request.operation.httpRequestDelegate rquestDidFinished:request.operation request:request];
+            }
+            else if ([ZHHTTPOperation.defaultHttpRequestDelegate respondsToSelector:@selector(rquestDidFinished:request:)])
+            {
+                [ZHHTTPOperation.defaultHttpRequestDelegate rquestDidFinished:request.operation request:request];
+            }
+        };
+        
         switch (operation.httpMethod) {
             case ZHHTTPMethodGet:
             {
@@ -95,9 +106,8 @@ static inline AFHTTPSessionManager *afManager()
                 return [manager GET:operation.httpUrl parameters:operation.httpParams progress:operation.httpProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
+                    requestDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -106,10 +116,11 @@ static inline AFHTTPSessionManager *afManager()
                         operation.httpResponse(task, responseObject, nil);
                     }
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }
@@ -127,10 +138,11 @@ static inline AFHTTPSessionManager *afManager()
                 }
                 if (operation.httpMutipartBody) {
                     return [manager POST:operation.httpUrl parameters:operation.httpParams constructingBodyWithBlock:operation.httpMutipartBody progress:operation.httpProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                        
                         //网络用户自定义操作响应
-                        if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                            [operation.httpRequestDelegate rquestDidFinished:operation];
-                        }
+                        ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
+                        requestDelegateCallBack(request);
+                        
                         if (operation.httpShowNetworkIndicator) {
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                         }
@@ -138,10 +150,11 @@ static inline AFHTTPSessionManager *afManager()
                             operation.httpResponse(task, responseObject, nil);
                         }
                     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        
                         //网络用户自定义操作响应
-                        if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                            [operation.httpRequestDelegate rquestDidFinished:operation];
-                        }
+                        ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
+                        requestDelegateCallBack(request);
+                        
                         if (operation.httpShowNetworkIndicator) {
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                         }
@@ -151,10 +164,11 @@ static inline AFHTTPSessionManager *afManager()
                     }];
                 } else {
                     return [manager POST:operation.httpUrl parameters:operation.httpParams progress:operation.httpProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                        
                         //网络用户自定义操作响应
-                        if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                            [operation.httpRequestDelegate rquestDidFinished:operation];
-                        }
+                        ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
+                        requestDelegateCallBack(request);
+                        
                         if (operation.httpShowNetworkIndicator) {
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                         }
@@ -162,10 +176,11 @@ static inline AFHTTPSessionManager *afManager()
                             operation.httpResponse(task, responseObject, nil);
                         }
                     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        
                         //网络用户自定义操作响应
-                        if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                            [operation.httpRequestDelegate rquestDidFinished:operation];
-                        }
+                        ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
+                        requestDelegateCallBack(request);
+                        
                         if (operation.httpShowNetworkIndicator) {
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                         }
@@ -183,10 +198,11 @@ static inline AFHTTPSessionManager *afManager()
                     [operation.httpRequestDelegate rquestWillPerform:operation];
                 }
                 return [manager HEAD:operation.httpUrl parameters:operation.httpParams success:^(NSURLSessionDataTask * _Nonnull task) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }
@@ -194,10 +210,11 @@ static inline AFHTTPSessionManager *afManager()
                         operation.httpResponse(task, nil, nil);
                     }
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }
@@ -215,10 +232,11 @@ static inline AFHTTPSessionManager *afManager()
                     [operation.httpRequestDelegate rquestWillPerform:operation];
                 }
                 return [manager PUT:operation.httpUrl parameters:operation.httpParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }
@@ -226,10 +244,11 @@ static inline AFHTTPSessionManager *afManager()
                         operation.httpResponse(task, responseObject, nil);
                     }
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }
@@ -246,10 +265,11 @@ static inline AFHTTPSessionManager *afManager()
                     [operation.httpRequestDelegate rquestWillPerform:operation];
                 }
                 return [manager PATCH:operation.httpUrl parameters:operation.httpParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }
@@ -257,10 +277,11 @@ static inline AFHTTPSessionManager *afManager()
                         operation.httpResponse(task, responseObject, nil);
                     }
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }
@@ -277,10 +298,11 @@ static inline AFHTTPSessionManager *afManager()
                     [operation.httpRequestDelegate rquestWillPerform:operation];
                 }
                 return [manager DELETE:operation.httpUrl parameters:operation.httpParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }
@@ -288,10 +310,11 @@ static inline AFHTTPSessionManager *afManager()
                         operation.httpResponse(task, responseObject, nil);
                     }
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    
                     //网络用户自定义操作响应
-                    if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:)]) {
-                        [operation.httpRequestDelegate rquestDidFinished:operation];
-                    }
+                    ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
+                    requestDelegateCallBack(request);
+                    
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     }

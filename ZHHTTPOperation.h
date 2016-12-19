@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
+#import "ZHHTTPRequest.h"
 
 //http post method
 typedef NS_ENUM(NSUInteger, ZHHTTPMethod) {
@@ -37,7 +38,7 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
 
 @optional
 - (void)rquestWillPerform:(ZHHTTPOperation *)operation;
-- (void)rquestDidFinished:(ZHHTTPOperation *)operation;
+- (void)rquestDidFinished:(ZHHTTPOperation *)operation request:(ZHHTTPRequest *)request;
 
 @end
 
@@ -64,6 +65,14 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  *  服务器回复的序列化 HTTP 和JSON 默认为JSON
  */
 @property (nonatomic, assign) ZHHTTPResponseSerilizer httpResponseSerilizer;
+
+/**
+ *  用户自定义的网络请求前后的默认操作对象
+ *  mark 会对代理的对象进行强引用
+ *  bref （建议用来显示加载动画等操作）
+ */
+@property (nonatomic, strong, class) id<ZHHTTPRequestProtocol> defaultHttpRequestDelegate;
+
 /**
  *  用户自定义的网络请求前后的操作对象
  *  mark 会对代理的对象进行强引用
@@ -86,7 +95,7 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  */
 @property (nonatomic, assign) BOOL httpShowNetworkIndicator;
 /**
- *  请求的超时时间 模式为60s
+ *  请求的超时时间 默认为60s
  */
 @property (nonatomic, strong) NSNumber *httpTimeoutInterval;
 /**
@@ -116,7 +125,11 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  */
 @property (nonatomic, copy, readonly) ZHHTTPOperation *(^responseSerilizer)(ZHHTTPResponseSerilizer responseSerilizer);
 /**
- *  设置用户自定义的网络请求前后的操作对象block
+ *  设置用户自定义的网络请求前后的操作对象block （建议用来显示加载动画等操作）
+ */
+@property (nonatomic, copy, readonly, class) void(^defaultRequestDelegate)(id<ZHHTTPRequestProtocol> defaultRequestDelegate);
+/**
+ *  设置用户自定义的网络请求前后的默认操作对象block
  */
 @property (nonatomic, copy, readonly) ZHHTTPOperation *(^requestDelegate)(id<ZHHTTPRequestProtocol> requestDelegate);
 /**
@@ -171,6 +184,10 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  *  设置回复的序列化 HTTP或JSON 默认为JSON
  */
 - (instancetype)responseSerilizer:(ZHHTTPResponseSerilizer)responseSerilizer;
+/**
+ *  设置请求发送前后的默认通知对象（建议用来显示加载动画等操作）
+ */
++ (void)defaultRequestDelegate:(id<ZHHTTPRequestProtocol>)defaultRequestDelegate;
 /**
  *  设置请求发送前后的通知对象
  */

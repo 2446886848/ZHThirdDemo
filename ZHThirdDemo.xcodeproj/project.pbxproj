@@ -10,6 +10,7 @@
 		5A4D43AD320C1EAEB604BFB5 /* libPods-ZHThirdDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D63D0C6B30976504BE0D3A79 /* libPods-ZHThirdDemo.a */; };
 		E864F5CF1DC97DE100180CB3 /* ZHRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E864F5CE1DC97DE100180CB3 /* ZHRequestManager.m */; };
 		E864F5D51DC9837500180CB3 /* ZHHTTPOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E864F5D41DC9837500180CB3 /* ZHHTTPOperation.m */; };
+		E87FF5941E077152000A2545 /* ZHHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E87FF5931E077152000A2545 /* ZHHTTPRequest.m */; };
 		FC59A1F01C422DC100FE4CF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59A1EF1C422DC100FE4CF8 /* main.m */; };
 		FC59A1F31C422DC100FE4CF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59A1F21C422DC100FE4CF8 /* AppDelegate.m */; };
 		FC59A1F61C422DC100FE4CF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59A1F51C422DC100FE4CF8 /* ViewController.m */; };
@@ -27,6 +28,8 @@
 		E864F5CE1DC97DE100180CB3 /* ZHRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHRequestManager.m; sourceTree = "<group>"; };
 		E864F5D31DC9837500180CB3 /* ZHHTTPOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHTTPOperation.h; sourceTree = "<group>"; };
 		E864F5D41DC9837500180CB3 /* ZHHTTPOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHTTPOperation.m; sourceTree = "<group>"; };
+		E87FF5921E077152000A2545 /* ZHHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHTTPRequest.h; sourceTree = "<group>"; };
+		E87FF5931E077152000A2545 /* ZHHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHTTPRequest.m; sourceTree = "<group>"; };
 		F2BAB39705B9B3EAC1DCA616 /* Pods-ZHThirdDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHThirdDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHThirdDemo/Pods-ZHThirdDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FC59A1EB1C422DC100FE4CF8 /* ZHThirdDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHThirdDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC59A1EF1C422DC100FE4CF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -80,6 +83,8 @@
 				E864F5CE1DC97DE100180CB3 /* ZHRequestManager.m */,
 				E864F5D31DC9837500180CB3 /* ZHHTTPOperation.h */,
 				E864F5D41DC9837500180CB3 /* ZHHTTPOperation.m */,
+				E87FF5921E077152000A2545 /* ZHHTTPRequest.h */,
+				E87FF5931E077152000A2545 /* ZHHTTPRequest.m */,
 			);
 			name = ZHRequestManager;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				FC59A1F31C422DC100FE4CF8 /* AppDelegate.m in Sources */,
 				FC59A1F01C422DC100FE4CF8 /* main.m in Sources */,
 				FCF86A7D1C9457620076A8EC /* ZHModelFormater.m in Sources */,
+				E87FF5941E077152000A2545 /* ZHHTTPRequest.m in Sources */,
 				E864F5CF1DC97DE100180CB3 /* ZHRequestManager.m in Sources */,
 				E864F5D51DC9837500180CB3 /* ZHHTTPOperation.m in Sources */,
 			);
