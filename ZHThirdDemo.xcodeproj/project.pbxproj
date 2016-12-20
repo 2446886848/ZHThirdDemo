@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5A4D43AD320C1EAEB604BFB5 /* libPods-ZHThirdDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D63D0C6B30976504BE0D3A79 /* libPods-ZHThirdDemo.a */; };
-		E864F5CF1DC97DE100180CB3 /* ZHRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E864F5CE1DC97DE100180CB3 /* ZHRequestManager.m */; };
-		E864F5D51DC9837500180CB3 /* ZHHTTPOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E864F5D41DC9837500180CB3 /* ZHHTTPOperation.m */; };
-		E87FF5941E077152000A2545 /* ZHHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E87FF5931E077152000A2545 /* ZHHTTPRequest.m */; };
+		E869965E1E08D991009EBDB1 /* ZHHTTPOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E86996591E08D991009EBDB1 /* ZHHTTPOperation.m */; };
+		E869965F1E08D991009EBDB1 /* ZHHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E869965B1E08D991009EBDB1 /* ZHHTTPRequest.m */; };
+		E86996601E08D991009EBDB1 /* ZHRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E869965D1E08D991009EBDB1 /* ZHRequestManager.m */; };
 		FC59A1F01C422DC100FE4CF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59A1EF1C422DC100FE4CF8 /* main.m */; };
 		FC59A1F31C422DC100FE4CF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59A1F21C422DC100FE4CF8 /* AppDelegate.m */; };
 		FC59A1F61C422DC100FE4CF8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC59A1F51C422DC100FE4CF8 /* ViewController.m */; };
@@ -24,12 +24,12 @@
 /* Begin PBXFileReference section */
 		46119CCDDC7C96654F0252C1 /* Pods-ZHThirdDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHThirdDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZHThirdDemo/Pods-ZHThirdDemo.release.xcconfig"; sourceTree = "<group>"; };
 		D63D0C6B30976504BE0D3A79 /* libPods-ZHThirdDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHThirdDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E864F5CD1DC97DE100180CB3 /* ZHRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHRequestManager.h; sourceTree = "<group>"; };
-		E864F5CE1DC97DE100180CB3 /* ZHRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHRequestManager.m; sourceTree = "<group>"; };
-		E864F5D31DC9837500180CB3 /* ZHHTTPOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHTTPOperation.h; sourceTree = "<group>"; };
-		E864F5D41DC9837500180CB3 /* ZHHTTPOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHTTPOperation.m; sourceTree = "<group>"; };
-		E87FF5921E077152000A2545 /* ZHHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHTTPRequest.h; sourceTree = "<group>"; };
-		E87FF5931E077152000A2545 /* ZHHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHTTPRequest.m; sourceTree = "<group>"; };
+		E86996581E08D991009EBDB1 /* ZHHTTPOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHTTPOperation.h; sourceTree = "<group>"; };
+		E86996591E08D991009EBDB1 /* ZHHTTPOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHTTPOperation.m; sourceTree = "<group>"; };
+		E869965A1E08D991009EBDB1 /* ZHHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHHTTPRequest.h; sourceTree = "<group>"; };
+		E869965B1E08D991009EBDB1 /* ZHHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHHTTPRequest.m; sourceTree = "<group>"; };
+		E869965C1E08D991009EBDB1 /* ZHRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHRequestManager.h; sourceTree = "<group>"; };
+		E869965D1E08D991009EBDB1 /* ZHRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHRequestManager.m; sourceTree = "<group>"; };
 		F2BAB39705B9B3EAC1DCA616 /* Pods-ZHThirdDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHThirdDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZHThirdDemo/Pods-ZHThirdDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FC59A1EB1C422DC100FE4CF8 /* ZHThirdDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHThirdDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC59A1EF1C422DC100FE4CF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,17 +76,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E864F5CC1DC97DB700180CB3 /* ZHRequestManager */ = {
+		E86996571E08D991009EBDB1 /* ZHRequestManager */ = {
 			isa = PBXGroup;
 			children = (
-				E864F5CD1DC97DE100180CB3 /* ZHRequestManager.h */,
-				E864F5CE1DC97DE100180CB3 /* ZHRequestManager.m */,
-				E864F5D31DC9837500180CB3 /* ZHHTTPOperation.h */,
-				E864F5D41DC9837500180CB3 /* ZHHTTPOperation.m */,
-				E87FF5921E077152000A2545 /* ZHHTTPRequest.h */,
-				E87FF5931E077152000A2545 /* ZHHTTPRequest.m */,
+				E86996581E08D991009EBDB1 /* ZHHTTPOperation.h */,
+				E86996591E08D991009EBDB1 /* ZHHTTPOperation.m */,
+				E869965A1E08D991009EBDB1 /* ZHHTTPRequest.h */,
+				E869965B1E08D991009EBDB1 /* ZHHTTPRequest.m */,
+				E869965C1E08D991009EBDB1 /* ZHRequestManager.h */,
+				E869965D1E08D991009EBDB1 /* ZHRequestManager.m */,
 			);
 			name = ZHRequestManager;
+			path = ZHThirdDemo/ZHRequestManager;
 			sourceTree = "<group>";
 		};
 		FC59A1E21C422DC100FE4CF8 = {
@@ -136,7 +137,7 @@
 		FC59A2051C422ED100FE4CF8 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				E864F5CC1DC97DB700180CB3 /* ZHRequestManager */,
+				E86996571E08D991009EBDB1 /* ZHRequestManager */,
 				FCF86A7A1C9457620076A8EC /* ZHModelFormatter */,
 			);
 			name = Class;
@@ -284,11 +285,11 @@
 				FC59A1F61C422DC100FE4CF8 /* ViewController.m in Sources */,
 				FC59A2131C4234EA00FE4CF8 /* ZHParam.m in Sources */,
 				FC59A1F31C422DC100FE4CF8 /* AppDelegate.m in Sources */,
+				E86996601E08D991009EBDB1 /* ZHRequestManager.m in Sources */,
 				FC59A1F01C422DC100FE4CF8 /* main.m in Sources */,
 				FCF86A7D1C9457620076A8EC /* ZHModelFormater.m in Sources */,
-				E87FF5941E077152000A2545 /* ZHHTTPRequest.m in Sources */,
-				E864F5CF1DC97DE100180CB3 /* ZHRequestManager.m in Sources */,
-				E864F5D51DC9837500180CB3 /* ZHHTTPOperation.m in Sources */,
+				E869965F1E08D991009EBDB1 /* ZHHTTPRequest.m in Sources */,
+				E869965E1E08D991009EBDB1 /* ZHHTTPOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

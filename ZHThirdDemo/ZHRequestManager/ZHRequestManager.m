@@ -60,6 +60,9 @@ static inline AFHTTPSessionManager *afManager()
             default:
                 break;
         }
+        if (operation.httpBasicAuth) {
+            [manager.requestSerializer setAuthorizationHeaderFieldWithUsername:operation.httpBasicAuth.allKeys.firstObject password:operation.httpBasicAuth.allValues.firstObject];
+        }
         
         //设置超时时间
         if (operation.httpTimeoutInterval) {

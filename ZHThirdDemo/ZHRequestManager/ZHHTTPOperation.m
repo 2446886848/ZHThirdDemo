@@ -132,6 +132,14 @@
     };
 }
 
+- (ZHHTTPOperation *(^)(NSDictionary<NSString *, NSString *> *))basicAuth
+{
+    return ^ZHHTTPOperation *(NSDictionary<NSString *, NSString *> *basicAuth){
+        self.httpBasicAuth = basicAuth;
+        return self;
+    };
+}
+
 - (ZHHTTPOperation *(^)(NSDictionary<NSString *, NSString *> *))customHeaderField
 {
     return ^ZHHTTPOperation *(NSDictionary<NSString *, NSString *> *customHeaderField){
@@ -199,6 +207,12 @@
 - (instancetype)timeoutInterval:(NSNumber *)timeoutInterval
 {
     self.httpTimeoutInterval = timeoutInterval;
+    return self;
+}
+
+- (instancetype)basicAuth:(NSDictionary<NSString *,NSString *> *)basicAuth
+{
+    self.httpBasicAuth = basicAuth;
     return self;
 }
 

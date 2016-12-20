@@ -99,6 +99,10 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  */
 @property (nonatomic, strong) NSNumber *httpTimeoutInterval;
 /**
+ *  BasicAuth头部
+ */
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *httpBasicAuth;
+/**
  *  用户自定义请求头部
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> *httpCustomHeaderField;
@@ -152,6 +156,10 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  *  设置请求超时的block
  */
 @property (nonatomic, copy, readonly) ZHHTTPOperation *(^timeoutInterval)(NSNumber *timeoutInterval);
+/**
+ *  设置用户BasicAuth的block
+ */
+@property (nonatomic, copy, readonly) ZHHTTPOperation *(^basicAuth)(NSDictionary<NSString *, NSString *> *customHeaderField);
 /**
  *  设置用户自定义请求头部的block
  */
@@ -212,6 +220,10 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  *  设置请求的超时时间
  */
 - (instancetype)timeoutInterval:(NSNumber *)timeoutInterval;
+/**
+ *  设置请求的BasicAuth
+ */
+- (instancetype)basicAuth:(NSDictionary<NSString *, NSString *> *)basicAuth;
 /**
  *  设置请求的用户自定义头部
  */
