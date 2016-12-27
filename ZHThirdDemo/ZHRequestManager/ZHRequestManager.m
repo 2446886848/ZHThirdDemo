@@ -89,6 +89,16 @@ static inline AFHTTPSessionManager *afManager()
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         }
         
+        void(^requestDelegateStartCallBack)(ZHHTTPOperation *) = ^(ZHHTTPOperation *operation){
+            if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)]) {
+                [operation.httpRequestDelegate rquestWillPerform:operation];
+            }
+            else if ([ZHHTTPOperation.defaultHttpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)])
+            {
+                [ZHHTTPOperation.defaultHttpRequestDelegate rquestWillPerform:operation];
+            }
+        };
+        
         void(^requestDelegateCallBack)(ZHHTTPRequest *) = ^(ZHHTTPRequest *request){
             if ([request.operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:request:)]) {
                 [request.operation.httpRequestDelegate rquestDidFinished:request.operation request:request];
@@ -103,9 +113,7 @@ static inline AFHTTPSessionManager *afManager()
             case ZHHTTPMethodGet:
             {
                 //网络用户自定义操作响应
-                if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)]) {
-                    [operation.httpRequestDelegate rquestWillPerform:operation];
-                }
+                requestDelegateStartCallBack(operation);
                 return [manager GET:operation.httpUrl parameters:operation.httpParams progress:operation.httpProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     
                     //网络用户自定义操作响应
@@ -136,9 +144,7 @@ static inline AFHTTPSessionManager *afManager()
             case ZHHTTPMethodPost:
             {
                 //网络用户自定义操作响应
-                if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)]) {
-                    [operation.httpRequestDelegate rquestWillPerform:operation];
-                }
+                requestDelegateStartCallBack(operation);
                 if (operation.httpMutipartBody) {
                     return [manager POST:operation.httpUrl parameters:operation.httpParams constructingBodyWithBlock:operation.httpMutipartBody progress:operation.httpProgress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                         
@@ -197,9 +203,7 @@ static inline AFHTTPSessionManager *afManager()
             case ZHHTTPMethodHead:
             {
                 //网络用户自定义操作响应
-                if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)]) {
-                    [operation.httpRequestDelegate rquestWillPerform:operation];
-                }
+                requestDelegateStartCallBack(operation);
                 return [manager HEAD:operation.httpUrl parameters:operation.httpParams success:^(NSURLSessionDataTask * _Nonnull task) {
                     
                     //网络用户自定义操作响应
@@ -231,9 +235,7 @@ static inline AFHTTPSessionManager *afManager()
             case ZHHTTPMethodPut:
             {
                 //网络用户自定义操作响应
-                if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)]) {
-                    [operation.httpRequestDelegate rquestWillPerform:operation];
-                }
+                requestDelegateStartCallBack(operation);
                 return [manager PUT:operation.httpUrl parameters:operation.httpParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     
                     //网络用户自定义操作响应
@@ -264,9 +266,7 @@ static inline AFHTTPSessionManager *afManager()
             case ZHHTTPMethodPatch:
             {
                 //网络用户自定义操作响应
-                if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)]) {
-                    [operation.httpRequestDelegate rquestWillPerform:operation];
-                }
+                requestDelegateStartCallBack(operation);
                 return [manager PATCH:operation.httpUrl parameters:operation.httpParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     
                     //网络用户自定义操作响应
@@ -297,9 +297,7 @@ static inline AFHTTPSessionManager *afManager()
             case ZHHTTPMethodDelete:
             {
                 //网络用户自定义操作响应
-                if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)]) {
-                    [operation.httpRequestDelegate rquestWillPerform:operation];
-                }
+                requestDelegateStartCallBack(operation);
                 return [manager DELETE:operation.httpUrl parameters:operation.httpParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     
                     //网络用户自定义操作响应
