@@ -90,6 +90,9 @@ static inline AFHTTPSessionManager *afManager()
         }
         
         void(^requestDelegateStartCallBack)(ZHHTTPOperation *) = ^(ZHHTTPOperation *operation){
+            if (operation.httpDisableRequestDelegate) {
+                return;
+            }
             if ([operation.httpRequestDelegate respondsToSelector:@selector(rquestWillPerform:)]) {
                 [operation.httpRequestDelegate rquestWillPerform:operation];
             }
@@ -99,7 +102,10 @@ static inline AFHTTPSessionManager *afManager()
             }
         };
         
-        void(^requestDelegateCallBack)(ZHHTTPRequest *) = ^(ZHHTTPRequest *request){
+        void(^requestFinishedDelegateCallBack)(ZHHTTPRequest *) = ^(ZHHTTPRequest *request){
+            if (operation.httpDisableRequestDelegate) {
+                return;
+            }
             if ([request.operation.httpRequestDelegate respondsToSelector:@selector(rquestDidFinished:request:)]) {
                 [request.operation.httpRequestDelegate rquestDidFinished:request.operation request:request];
             }
@@ -118,7 +124,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -130,7 +136,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -150,7 +156,7 @@ static inline AFHTTPSessionManager *afManager()
                         
                         //网络用户自定义操作响应
                         ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
-                        requestDelegateCallBack(request);
+                        requestFinishedDelegateCallBack(request);
                         
                         if (operation.httpShowNetworkIndicator) {
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -162,7 +168,7 @@ static inline AFHTTPSessionManager *afManager()
                         
                         //网络用户自定义操作响应
                         ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
-                        requestDelegateCallBack(request);
+                        requestFinishedDelegateCallBack(request);
                         
                         if (operation.httpShowNetworkIndicator) {
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -176,7 +182,7 @@ static inline AFHTTPSessionManager *afManager()
                         
                         //网络用户自定义操作响应
                         ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
-                        requestDelegateCallBack(request);
+                        requestFinishedDelegateCallBack(request);
                         
                         if (operation.httpShowNetworkIndicator) {
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -188,7 +194,7 @@ static inline AFHTTPSessionManager *afManager()
                         
                         //网络用户自定义操作响应
                         ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
-                        requestDelegateCallBack(request);
+                        requestFinishedDelegateCallBack(request);
                         
                         if (operation.httpShowNetworkIndicator) {
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -208,7 +214,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -220,7 +226,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -240,7 +246,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -252,7 +258,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -271,7 +277,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -283,7 +289,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -302,7 +308,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:nil operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -314,7 +320,7 @@ static inline AFHTTPSessionManager *afManager()
                     
                     //网络用户自定义操作响应
                     ZHHTTPRequest *request = [ZHHTTPRequest requestWithTask:task error:error operation:operation];
-                    requestDelegateCallBack(request);
+                    requestFinishedDelegateCallBack(request);
                     
                     if (operation.httpShowNetworkIndicator) {
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

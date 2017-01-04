@@ -79,6 +79,10 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  */
 @property (nonatomic, strong) id<ZHHTTPRequestProtocol> httpRequestDelegate;
 /**
+ 禁用请求的代理通知 默认为NO
+ */
+@property (nonatomic, assign) BOOL httpDisableRequestDelegate;
+/**
  *  请求的进度
  */
 @property (nonatomic, copy) void (^httpProgress)(NSProgress *downloadProgress);
@@ -136,6 +140,10 @@ typedef NS_ENUM(NSUInteger, ZHHTTPResponseSerilizer) {
  *  设置用户自定义的网络请求前后的默认操作对象block
  */
 @property (nonatomic, copy, readonly) ZHHTTPOperation *(^requestDelegate)(id<ZHHTTPRequestProtocol> requestDelegate);
+/**
+ *  设置是否禁用代理对象的通知
+ */
+@property (nonatomic, copy, readonly) ZHHTTPOperation *(^disableRequestDelegate)(BOOL disableRequestDelegate);
 /**
  *  设置请求进度block的block
  */

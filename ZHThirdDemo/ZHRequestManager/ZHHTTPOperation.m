@@ -100,6 +100,14 @@
     };
 }
 
+- (ZHHTTPOperation *(^)(BOOL))disableRequestDelegate
+{
+    return ^ZHHTTPOperation *(BOOL disableRequestDelegate){
+        self.httpDisableRequestDelegate = disableRequestDelegate;
+        return self;
+    };
+}
+
 - (ZHHTTPOperation * (^)(void (^)(NSURLSessionDataTask *task, id responseObject, NSError * error)))response;
 {
     return ^ZHHTTPOperation *(void (^response)(NSURLSessionDataTask *task, id responseObject, NSError * error)){
